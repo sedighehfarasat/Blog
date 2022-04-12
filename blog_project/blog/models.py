@@ -11,3 +11,7 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    @property
+    def first_paragh(self):
+        return self.content[:500]
