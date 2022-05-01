@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Grape+Nuts&display=swap" rel="stylesheet">
     <!-- Page title -->
     {% if title %}
-        <title>{{ title }}</title>
+        <title>Blog | {{ title }}</title>
     {% else %}
         <title>Blog</title>
     {% endif %}
@@ -58,7 +58,8 @@
               </div>
             {% endfor %}
           {% endif %}
-          {% block content %}{% endblock %}
+          {% block content %}
+          {% endblock %}
         </div>
       </div>
     </main>
