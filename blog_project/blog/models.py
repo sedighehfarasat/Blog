@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Post(models.Model):
@@ -14,3 +15,6 @@ class Post(models.Model):
     @property
     def first_paragh(self):
         return self.content[:500]
+
+    def get_absolute_url(self):
+        return reverse('blog-detail', kwargs={'pk': self.pk})

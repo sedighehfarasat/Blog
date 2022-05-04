@@ -1,4 +1,5 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Post
 
 
@@ -23,3 +24,18 @@ class PostDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = Post.objects.get(id=self.kwargs['pk']).title
         return context
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    template_name = 'blog/post_create.html'
+    fields = ['title', 'content']
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Post Something New'
+        return context
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
