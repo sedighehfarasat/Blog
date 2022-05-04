@@ -4,7 +4,7 @@
         <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
         <div class="media-body">
         <div class="article-metadata">
-          <small class="author">{{ post.author }}</small>
+          <a class="mr-2" href="{% url 'blog-user-posts' post.author.username %}">{{ post.author }}</a>
           <small class="text-muted">{{ post.date_posted | date:"F d, Y" }}</small>
             <div>
                 {% if post.author == user %}
